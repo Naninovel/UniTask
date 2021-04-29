@@ -1,23 +1,21 @@
-﻿using System;
-using Naninovel;
+﻿// Using standalone UniTask v2 by default.
 using Cysharp.Threading.Tasks;
-using UnityEngine;
+using Naninovel;
+using Naninovel.Commands;
 
-[CommandAlias("uniTask")]
 public class UniTaskCommand : Command
 {
-    [ParameterAlias(NamelessParameterAlias), RequiredParameter]
-    public StringParameter Message;
-
+    // This method uses embedded UniTask v1.
     public override async UniRx.Async.UniTask ExecuteAsync (CancellationToken cancellationToken = default)
     {
         var message = await WaitAndReturnMessageAsync();
-        Debug.Log(message);
+        await new PrintText { Text = message }.ExecuteAsync();
     }
 
+    // This method uses standalone UniTask v2.
     private async UniTask<string> WaitAndReturnMessageAsync ()
     {
-        await UniTask.Delay(TimeSpan.FromSeconds(1));
-        return Message;
+        await UniTask.DelayFrame(100);
+        return "Hello from UniTask v2!";
     }
 }
