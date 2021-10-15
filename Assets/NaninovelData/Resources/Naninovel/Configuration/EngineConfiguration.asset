@@ -26,5 +26,8 @@ MonoBehaviour:
   ShowInitializationUI: 1
   CustomInitializationUI: {fileID: 0}
   ShowTitleUI: 1
+  EnableBridging: 0
+  ServerPort: 41016
+  AutoGenerateMetadata: 1
   EnableDevelopmentConsole: 1
   ToggleConsoleKey: 96
